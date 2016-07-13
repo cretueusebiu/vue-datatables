@@ -72,6 +72,21 @@ export default {
             }
         },
 
+        language: {
+            type: Object,
+            default: function () {
+                return {
+                    search: '_INPUT_',
+                    searchPlaceholder: 'Search...',
+                    lengthMenu: 'Per page: _MENU_',
+                    paginate: {
+                        previous: '&laquo;',
+                        next: '&raquo;'
+                    }
+                };
+            }
+        },
+
         options: {
             type: Array,
             default() {
@@ -119,6 +134,8 @@ export default {
             this.table = table.DataTable(options);
 
             this.actionsEvents();
+
+            this.$dispatch(this.eventPrefix + 'ready', table, this.table);
         },
 
         /**
@@ -150,7 +167,9 @@ export default {
         defaults() {
             return {
                 ajax: this.url,
+                autoWidth: false,
                 columns: this.columns,
+                language: this.language,
                 serverSide: this.serverSide
             };
         },
@@ -207,7 +226,7 @@ export default {
          */
         buildActions() {
             const column = {
-                sortable: false,
+                orderable: false,
                 searchable: false,
                 render: (_, __, ___, meta) => {
                     return [''].concat(this.itemActions).reduce((html, action) => html + this.buildAction(action, meta.row));
@@ -225,8 +244,12 @@ export default {
          * @return {String}
          */
         buildAction(action, row) {
+            if (action.callback === 'function') {
+                return action.callback(row);
+            }
+
             return `
-                <button type="button" class="${action.class}" data-action="${action.name}" data-row="${row}">
+                <button type="button" class="${action.class || ''}" title="${action.title || ''}" data-action="${action.name}" data-row="${row}">
                     <i class="${action.icon}"></i> ${action.label || ''}
                 </button>
             `;
