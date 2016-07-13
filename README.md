@@ -80,3 +80,13 @@ export default function () {
 }
 
 ```
+
+```css
+.dataTables-length-filter {
+    text-align: right;
+}
+
+.dataTables_length, .dataTables_filter {
+    display: inline-block;
+}
+```
