@@ -87,6 +87,13 @@ export default {
             }
         },
 
+        order: {
+            type: Array,
+            default() {
+                return [];
+            }
+        },
+
         options: {
             type: Array,
             default() {
@@ -168,6 +175,7 @@ export default {
             return {
                 ajax: this.url,
                 autoWidth: false,
+                order: this.order,
                 columns: this.columns,
                 language: this.language,
                 serverSide: this.serverSide
