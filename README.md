@@ -1,7 +1,6 @@
 # vue-datatables
 
-A Vue component for DataTables. Comming soon.
-
+A Vue component for DataTables.
 
 ```javascript
 import Vue from 'vue';
