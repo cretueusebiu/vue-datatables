@@ -3,7 +3,7 @@ import $ from 'jquery';
 export default {
     template: `
         <div class="{{wrapperClass}}">
-            <table class="table table-bordered table-striped table-hover" v-el:table>
+            <table :class="tableClass" :class="{'dtr-inline': responsive}" v-el:table>
                 <thead>
                     <tr>
                         <template v-for="column in columns">
@@ -94,6 +94,12 @@ export default {
             }
         },
 
+        responsive: {
+            default() {
+                return false;
+            }
+        },
+
         options: {
             type: Array,
             default() {
@@ -178,7 +184,8 @@ export default {
                 order: this.order,
                 columns: this.columns,
                 language: this.language,
-                serverSide: this.serverSide
+                serverSide: this.serverSide,
+                responsive: this.responsive
             };
         },
 
