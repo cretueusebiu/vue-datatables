@@ -1,0 +1,12 @@
+@import 'node_modules/datatables.net-bs/css/dataTables.bootstrap';
+@import 'node_modules/datatables.net-responsive-bs/css/responsive.bootstrap';
+
+@import 'actions.scss';
+
+#app {
+  margin-top: 60px;
+}
+
+.inline-block {
+  display: inline-block;
+}

@@ -1,91 +1,40 @@
 # vue-datatables
 
-A Vue component for DataTables.
+> A Vue 2.0 component for [DataTables](https://datatables.net) [WIP].
 
-```javascript
-import Vue from 'vue';
-import $ from 'jquery';
-require('datatables.net-bs')(window, $);
-import configureDataTables from './configureDataTables';
-import {DataTable, DataTableMixin} from 'vue-datatables';
+## Installation
 
-configureDataTables($);
+``` bash
+npm install --save vue-datatables jquery datatables.net-bs datatables.net-responsive-bs
+```
 
-Vue.component('v-datatable', DataTable);
+For Webpack, add the following loader:
+
+```js
+{
+  test: /datatables\.net.*/,
+  loader: 'imports?define=>false'
+}
+```
+
+## Usage
+
+```
+import Vue from 'vue'
+import $ from 'jquery'
+require('datatables.net-bs')(window, $)
+// import VueResource from 'vue-resource'
+import VueDataTables from 'vue-datatables'
+
+import App from './App.vue'
+
+// Vue.use(VueResource)
+Vue.use(VueDataTables)
 
 new Vue({
-    mixins: [DataTableMixin],
-
-    el: 'body',
-
-    data: {
-        columns: [
-            {name: 'name', data: 'name', title: 'Name'},
-            {name: 'email', data: 'email', title: 'Email'},
-            {name: 'created_at', data: 'created_at', title: 'Created', callback: 'createdAt'},
-            '__actions'
-        ],
-
-        itemActions: [
-            {name: 'edit', icon: 'glyphicon glyphicon-pencil', class: 'btn btn-primary btn-xs'},
-            {name: 'delete', title: 'Delete', icon: 'glyphicon glyphicon-trash', class: 'btn btn-danger btn-xs'}
-        ]
-    },
-
-    events: {
-        'vue-datatables:ready': function () {
-            const btn = $('<button>', {text: 'Add New', type: 'button', class: 'btn btn-default btn-sm'});
-
-            btn.on('click', () => this.addAction());
-
-            $('.dataTables-add-action').append(btn);
-        }
-    },
-
-    methods: {
-        addAction() {
-            console.log('add clicked');
-        },
-
-        createdAt(data) {
-            return `[${data}]`;
-        },
-
-        editAction(row, index) {
-            console.log('edit', row, index);
-        },
-
-        deleteAction(row, index) {
-            this.refreshDataTable();
-            // this.$broadcast('vue-datatable:refresh');
-        }
-    }
-});
+  el: '#app',
+  render: h => h(App)
+})
 ```
 
-`configureDataTables.js`
-```javascript
-import $ from 'jquery';
-
-export default function () {
-    $.extend(true, $.fn.dataTable.defaults, {
-        dom: `
-            <'row'<'col-sm-6 dataTables-add-action'><'col-sm-6 dataTables-length-filter'lf>>
-            <'row'<'col-sm-12'tr>>
-            <'row'<'col-sm-5'i><'col-sm-7'p>>
-        `,
-        renderer: 'bootstrap'
-    });
-}
-
-```
-
-```css
-.dataTables-length-filter {
-    text-align: right;
-}
-
-.dataTables_length, .dataTables_filter {
-    display: inline-block;
-}
-```
+See [demo/src/App.vue](demo/src/App.vue).

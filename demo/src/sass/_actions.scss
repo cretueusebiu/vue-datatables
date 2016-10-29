@@ -1,0 +1,55 @@
+$primary: #3498cb;
+$success: #38ae67;
+$info: #2ea8e5;
+$warning: #fc6d26;
+$danger: #e52c5a;
+
+@mixin action-variant($color) {
+  &:focus,
+  &:hover,
+  a:focus,
+  a:hover {
+    color: $color;
+    text-decoration: none;
+  }
+}
+
+.action {
+  color: #666;
+  cursor: pointer;
+  transition: all .1s linear;
+
+  a {
+    color: #666;
+    cursor: pointer;
+    transition: all .1s linear;
+  }
+
+  .fa {
+    font-size: 16px;
+  }
+
+  &+.action {
+    margin-left: 8px;
+  }
+}
+
+.action-default {
+  @include action-variant(#6B6B6B);
+}
+
+.action-primary {
+  @include action-variant($primary);
+}
+
+.action-danger {
+  @include action-variant($danger);
+}
+
+.action-warning {
+  @include action-variant($warning);
+}
+
+.action-success {
+  @include action-variant($success);
+}
