@@ -1,6 +1,6 @@
 {
   "name": "vue-datatables",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A Vue component for DataTables.",
   "main": "dist/index.js",
   "scripts": {

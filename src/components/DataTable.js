@@ -78,7 +78,7 @@ export default {
                 return {
                     search: '_INPUT_',
                     searchPlaceholder: 'Search...',
-                    lengthMenu: 'Per page: _MENU_',
+                    lengthMenu: '_MENU_',
                     paginate: {
                         previous: '&laquo;',
                         next: '&raquo;'
