@@ -1,8 +1,5 @@
 node_modules/
-build/
-config/
 demo/
-src/
 test/
 .babelrc
 .editorconfig
