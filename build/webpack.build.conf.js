@@ -14,8 +14,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     libraryTarget: 'umd'
   },
   externals: {
-    vue: 'Vue',
-    jquery: 'jQuery'
+    // vue: 'Vue',
+    // jquery: 'jQuery'
   },
   devtool: config.bundle.productionSourceMap ? '#source-map' : false
 })

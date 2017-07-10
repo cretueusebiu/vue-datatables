@@ -18,7 +18,7 @@
 
       <datatable
         ref="table"
-        url="/static/users.json"
+        url="https://cdn.rawgit.com/davismiculis/vue-datatables/7e7b934f/demo/static/users.json"
         :columns="columns"
         :actions="actions"
         :search="search"
