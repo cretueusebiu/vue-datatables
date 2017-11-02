@@ -126,9 +126,7 @@ export default {
      */
     init () {
       const table = $(this.$refs.table)
-
       this.dataTable = table.DataTable(this.mergeOptions())
-
       this.dataTable.on('click', '.dt-action', (e) => this.handleActionClick(e))
     },
 

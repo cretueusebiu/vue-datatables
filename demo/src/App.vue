@@ -18,7 +18,7 @@
 
       <datatable
         ref="table"
-        url="/static/users.json"
+        url="static/users.json"
         :columns="columns"
         :actions="actions"
         :search="search"
